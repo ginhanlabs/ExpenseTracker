@@ -1,6 +1,7 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import ExpenseListScreen from './ExpenseListScreen';
+import RecentExpenseScreen from './RecentExpenseScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -23,8 +24,14 @@ function HomeScreen(){
         tabBarInactiveTintColor: '#667e6c',
       })}
     >
-      <Tab.Screen name="Recent" component={ExpenseListScreen} />
-      <Tab.Screen name="AllExpenses" component={ExpenseListScreen} />
+      <Tab.Screen name="Recent" component={RecentExpenseScreen}
+        options={{
+          headerShown: false 
+        }} />
+      <Tab.Screen name="AllExpenses" component={ExpenseListScreen}
+        options={{
+          headerShown: false 
+        }} />
     </Tab.Navigator>
 }
 
