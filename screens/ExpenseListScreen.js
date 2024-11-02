@@ -11,7 +11,6 @@ function ExpenseListScreen() {
         <View style={styles.container}>
             {expenses.length > 0 ? <Expense data={expenses} /> : <NoExpenses /> }
         </View>
-      </View>
     );
   }
 
@@ -26,7 +25,6 @@ function ExpenseListScreen() {
         }
     </View>
   );
-}
 
 
 export default ExpenseListScreen;
