@@ -1,37 +1,15 @@
-import { Text, View, StyleSheet, FlatList} from "react-native";
-import { DUMMY_DATA } from "../DUMMYDATA";
-import { useLayoutEffect, useState } from "react";
+import { Text, View, StyleSheet} from "react-native";
+import Expense from "../components/Expense";
+import  { DUMMY_DATA }  from "../DUMMYDATA";
+import NoExpenses from "../components/NoExpenses";
+function ExpenseListScreen() {
+    const expenses = DUMMY_DATA;
 
-function ExpenseListScreen({ expenseData }) {
-    const [expenses, setExpenses] = useState([]);
-
-    useLayoutEffect(() => {
-      if (expenseData) {
-        console.log(expenseData.length);
-        setExpenses(expenseData);
-      } else {
-        setExpenses(DUMMY_DATA);
-      }
-    }, [expenseData, expenses]);
-
-  const noExpenses = <Text style={styles.noExpenses}>There are no expenses.</Text>;
-
-  function renderItem({ item }) {
+    
+   
     return (
-      <View style={styles.container}>
-        <View style={styles.expenseContainer}>
-          <View style={styles.textRow}>
-            <Text>Amount:</Text>
-            <Text style={styles.text}>{item.amount}</Text>
-          </View>
-          <View style={styles.textRow}>
-            <Text>Date:</Text>
-            <Text style={styles.text}>{item.date}</Text>
-          </View>
-        </View>
-        <View style={styles.descriptionContainer}>
-          <Text>Description:</Text>
-          <Text style={styles.text}>{item.description}</Text>
+        <View style={styles.container}>
+            {expenses.length > 0 ? <Expense data={expenses} /> : <NoExpenses /> }
         </View>
       </View>
     );

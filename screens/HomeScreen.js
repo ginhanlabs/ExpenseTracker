@@ -13,37 +13,28 @@ function HomeScreen(){
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
 
-            if (route.name === "Recent") {
-              iconName = focused ? "list-circle" : "list-circle-outline";
-            } else if (route.name === "AllExpenses") {
-              iconName = focused ? "grid" : "grid-outline";
-            }
-            return <Ionicons name={iconName} size={size} color={color} />;
-          },
-          tabBarActiveTintColor: "#cb89d2",
-          tabBarInactiveTintColor: "#7f6791",
-        })}
-      >
-        <Tab.Screen
-          name="Recent"
-          component={RecentExpenseScreen}
-          options={{
-            headerShown: false,
-            tabBarLabel: "Recent",
-            tabBarShowLabel: true,
-          }}
-        />
-        <Tab.Screen
-          name="AllExpenses"
-          component={ExpenseListScreen}
-          options={{
-            headerShown: false,
-            tabBarLabel: "Recent",
-            tabBarShowLabel: true,
-          }}
-        />
-      </Tab.Navigator>
-    );
+          if (route.name === 'Recent') {
+            iconName = focused
+              ? 'list-circle'
+              : 'list-circle-outline';
+          } else if (route.name === 'AllExpenses') {
+            iconName = focused ? 'grid' : 'grid-outline';
+          }
+          return <Ionicons name={iconName} size={size} color={color} />;
+        },
+        tabBarActiveTintColor: '#082910',
+        tabBarInactiveTintColor: '#667e6c',
+      })}
+    >
+      <Tab.Screen name="Recent" component={RecentExpenseScreen}
+        options={{
+          title: 'Recent' 
+        }} />
+      <Tab.Screen name="AllExpenses" component={ExpenseListScreen}
+        options={{
+          headerShown: false 
+        }} />
+    </Tab.Navigator>
 }
 
 export default HomeScreen;

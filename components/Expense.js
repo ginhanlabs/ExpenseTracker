@@ -1,49 +1,71 @@
-import {View, Text, StyleSheet, TextInput} from 'react-native';
+import {View, Text, StyleSheet, FlatList, Pressable} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+function Expense({navigtor, data, mode}) {
+    const navigation = useNavigation();
+    function handlePress(item){
+        if (mode !== 'viewOnly') {
+            navigation.navigate('AddExpense',{
+                expense: {item},
+                mode: 'Update',
+              })
+        }
+    }
 
-function Expense() {
-    return <View style={styles.container}>
-        <View style={styles.expenseContainer}>
-            <Text style={styles.textField}>Item name</Text>
-            <TextInput style={styles.input} value="15.90" />
-            
+    function renderItem({item}) {
+       return (
+        <Pressable 
+            onPress={() => handlePress(item)}>
+        <View style={styles.container}>
+            <View style={styles.expenseContainer}>
+                <Text style={styles.textField}>{item.date}</Text>
+                <Text style={[styles.textField, styles.amount]}>
+                    {item.amount}
+                </Text>
+            </View>
+            <View >
+                <Text style={styles.textField}>{item.description}</Text>
+            </View>
         </View>
-        <View >
-            <Text style={styles.textField}>Date</Text>
-        </View>
-    </View>
+        </Pressable>
+    )}
+
+    return <View>
+
+        <FlatList data={data}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
+        />
+    </View> 
 }
 
 export default Expense;
 
 const styles = StyleSheet.create({
     container: {
-        width: '90%',
         borderColor: 'black',
         borderWidth: 1,
         padding: 10,
         backgroundColor: 'green',
-        // textAlignVertical: 'center',
+        margin: 10,
+        
 
     },
     expenseContainer: {
         flexDirection: 'row',
-        // justifyContent: 'center',
-        // textAlign: 'center',
-        // alignContent: 'center',
-        
-       
-        
+        justifyContent: 'space-between',
+        width: '100%', 
     },
     textField: {
-        width: '50%',
+        fontSize: 16,
         color: 'white',
+        margin: 3,
     },
-    input: {
-        width: '50%',
-        padding: 5,
-         textAlign: 'right',
-         backgroundColor: 'white',
-         borderRadius: 5,
-
-    }
+    amount: {
+     width: 100,
+     color: 'black',
+     padding: 2,
+     fontSize: 16,
+     backgroundColor: 'white',
+    },
+    
 })

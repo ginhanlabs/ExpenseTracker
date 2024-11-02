@@ -1,10 +1,20 @@
 import { Text, View, StyleSheet, TextInput, Button} from "react-native";
 import { useState } from "react";
-function AddExpenseScreen({navigation}) {
-    const [itemName, setItemName] = useState();
+function AddExpenseScreen({navigation, route}) {
+    const {mode, expense}  = route.params;
+
+    console.log(mode);
+    if (mode === 'Update') {
+        console.log({expense});
+    }
+
+    const [description, setDescription] = useState();
     const [price, setPrice] = useState();
     const [itemDate, setItemDate] = useState();
 
+    if (mode === 'Update') {
+        setDescription("lunhing")
+    }
 
     function cancelHandler() {
         console.log("cancel");
@@ -22,15 +32,18 @@ function AddExpenseScreen({navigation}) {
 
     return(
         <View style={styles.container} >
-            <Text style={styles.title}>Add Expense</Text>
+            <Text style={styles.title}>{mode} Expense</Text>
             <View style={styles.formContainer}>
             <Text style={styles.label}>Item name:</Text>
             <TextInput name="itemName" style={styles.input}
-                onChange={titleChangeHandler} value={itemName}/>
+                value={description}/>
             <Text style={styles.label}>Price:</Text>
-            <TextInput name="itemPrice" style={styles.input}></TextInput>
+            <TextInput name="itemPrice" style={styles.input}
+               ></TextInput>
             <Text style={styles.label}>Date Purchased</Text>
-            <TextInput name="itemDate" style={styles.input}></TextInput>
+            <TextInput name="itemDate" style={styles.input}
+               
+            ></TextInput>
             
                 <View style={styles.buttonsContainer}>
                     <Button title="Cancel" 
