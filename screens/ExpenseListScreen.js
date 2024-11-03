@@ -4,28 +4,16 @@ import  { DUMMY_DATA }  from "../DUMMYDATA";
 import NoExpenses from "../components/NoExpenses";
 function ExpenseListScreen() {
     const expenses = DUMMY_DATA;
-
-    
-   
     return (
         <View style={styles.container}>
-            {expenses.length > 0 ? <Expense data={expenses} /> : <NoExpenses /> }
+            {
+              expenses.length > 0 ? <Expense data={expenses} mode='Update'/> : 
+              <NoExpenses /> 
+            }
         </View>
     );
-  }
 
-  return (
-    <View style={styles.container}>
-      {!expenses.length && noExpenses ? noExpenses :
-        <FlatList
-            data={expenses}
-            renderItem={renderItem}
-            keyExtractor={(item) => item.id}
-        />
-        }
-    </View>
-  );
-
+};
 
 export default ExpenseListScreen;
 

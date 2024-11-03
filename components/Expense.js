@@ -1,11 +1,12 @@
 import {View, Text, StyleSheet, FlatList, Pressable} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-function Expense({navigtor, data, mode}) {
+function Expense({navigator, data, mode}) {
     const navigation = useNavigation();
     function handlePress(item){
-        if (mode !== 'viewOnly') {
-            navigation.navigate('AddExpense',{
-                expense: {item},
+        console.log("expense item =", item)
+        if (mode === 'Update') {
+            navigation.navigate('ManageExpense',{
+                data: item,
                 mode: 'Update',
               })
         }

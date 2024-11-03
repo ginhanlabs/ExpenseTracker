@@ -5,7 +5,7 @@ import RecentExpenseScreen from './RecentExpenseScreen';
 
 const Tab = createBottomTabNavigator();
 
-function HomeScreen(){
+function HomeScreen() {
     return (
       <Tab.Navigator
         screenOptions={({ route }) => ({
@@ -34,7 +34,7 @@ function HomeScreen(){
         options={{
           headerShown: false 
         }} />
-    </Tab.Navigator>
-}
+    </Tab.Navigator>)
+};
 
 export default HomeScreen;

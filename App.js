@@ -6,14 +6,15 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import ExpenseListScreen from './screens/ExpenseListScreen';
 import HomeScreen from './screens/HomeScreen';
-import AddExpenseScreen from './screens/AddExpenseScreen';
+import ManageExpenseScreen from './screens/ManageExpenseScreen';
+import { DUMMY_DATA } from './DUMMYDATA';
 const Stack = createNativeStackNavigator();
 
 export default function App({navigation}) {
 
   function addButtonPressedHandler(){
     console.log("add button pressed");
-    navigation.navigate('AddExpense')
+    navigation.navigate('ManageExpense')
   }
 
   return (
@@ -33,14 +34,16 @@ export default function App({navigation}) {
           options={({ navigation }) => ({
             headerTitle: 'Expense Tracker',
              headerRight: () => <Button title="+" 
-              onPress={() => navigation.navigate('AddExpense')}/>,
+              onPress={() => navigation.navigate('ManageExpense', {
+                mode: 'Add'
+              })}/>
           })}
         />
         <Stack.Screen name="AllExpenses" 
           component={ExpenseListScreen} 
           options = {{headerShown: false}} />
-        <Stack.Screen name="AddExpense"
-          component={AddExpenseScreen}
+        <Stack.Screen name="ManageExpense"
+          component={ManageExpenseScreen }
           options = {{headerShown: false}} />
       </Stack.Navigator>
   </NavigationContainer>

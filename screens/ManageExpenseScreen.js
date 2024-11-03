@@ -1,20 +1,33 @@
 import { Text, View, StyleSheet, TextInput, Button} from "react-native";
 import { useState } from "react";
-function AddExpenseScreen({navigation, route}) {
-    const {mode, expense}  = route.params;
+function ManageExpenseScreen({navigation, route}) {
+    const {mode, data}  = route.params;
+    const [expenseData, setExpenseData] = useState({
+        amount: {
+            value: data ? data.amount: '',
+            isValid: true,
+          },
+          date: {
+            value: data ? data.date : '',
+            isValid: true,
+          },
+          description: {
+            value: data ? data.description : '',
+            isValid: true,
+          },
+    })
 
-    console.log(mode);
     if (mode === 'Update') {
-        console.log({expense});
+        console.log(" works " + data.amount);
     }
 
-    const [description, setDescription] = useState();
-    const [price, setPrice] = useState();
-    const [itemDate, setItemDate] = useState();
+    // const [description, setDescription] = useState();
+    // const [price, setPrice] = useState();
+    // const [itemDate, setItemDate] = useState();
 
-    if (mode === 'Update') {
-        setDescription("lunhing")
-    }
+    // if (mode === 'Update') {
+    //     setExpenseData({description: 'blah'})
+    // }
 
     function cancelHandler() {
         console.log("cancel");
@@ -30,20 +43,21 @@ function AddExpenseScreen({navigation, route}) {
     //     console.log("submitted");
     // }
 
-    return(
+    return (
         <View style={styles.container} >
             <Text style={styles.title}>{mode} Expense</Text>
             <View style={styles.formContainer}>
-            <Text style={styles.label}>Item name:</Text>
-            <TextInput name="itemName" style={styles.input}
-                value={description}/>
-            <Text style={styles.label}>Price:</Text>
-            <TextInput name="itemPrice" style={styles.input}
+            <Text style={styles.label}>Description:</Text>
+          <TextInput style={styles.input}
+                value={expenseData.amount.value} />
+              <Text style={styles.label}>Amount:</Text> 
+            <TextInput style={styles.input}
+                value={expenseData.amount.value}
                ></TextInput>
             <Text style={styles.label}>Date Purchased</Text>
-            <TextInput name="itemDate" style={styles.input}
-               
-            ></TextInput>
+            <TextInput style={styles.input}
+               value={expenseData.date.value}
+            ></TextInput> 
             
                 <View style={styles.buttonsContainer}>
                     <Button title="Cancel" 
@@ -59,7 +73,7 @@ function AddExpenseScreen({navigation, route}) {
     )
 }
 
-export default AddExpenseScreen;
+export default ManageExpenseScreen;
 
 const styles = StyleSheet.create({
     container: {
